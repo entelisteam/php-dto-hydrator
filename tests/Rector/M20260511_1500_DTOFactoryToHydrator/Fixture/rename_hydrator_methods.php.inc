@@ -2,7 +2,7 @@
 
 namespace EntelisTeam\DTOHydrator\Tests\Rector\M20260511_1500_DTOFactoryToHydrator\Fixture;
 
-use EntelisTeam\Hydrator\DTOFactory;
+use EntelisTeam\DTOHydrator\Hydrator;
 
 class UsesHydratorMethods
 {
@@ -11,7 +11,7 @@ class UsesHydratorMethods
         //прямой вызов методов на экземпляре фабрики — RenameClassRector делает
         //$factory типизированным как Hydrator, после чего RenameMethodRector
         //переименовывает createObject/createArray.
-        $factory = new DTOFactory(self::class);
+        $factory = new Hydrator(self::class);
         $object = $factory->createObject(['x' => 1]);
         $list = $factory->createArray([['x' => 1]]);
     }

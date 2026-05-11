@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace EntelisTeam\DTOHydrator\Rector\Internal;
 
-use EntelisTeam\DTOHydrator\HydratorRegistry;
-use EntelisTeam\DTOHydrator\HydratorTrait;
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Reflection\ClassReflection;
@@ -21,11 +19,11 @@ use Rector\StaticTypeMapper\Resolver\ClassNameFromObjectTypeResolver;
 final class HydratorTraitDetector
 {
     private const TRAIT_FQNS = [
-        HydratorTrait::class,
+        'EntelisTeam\\DTOHydrator\\HydratorTrait',
     ];
 
     private const REGISTRY_FQNS = [
-        HydratorRegistry::class,
+        'EntelisTeam\\DTOHydrator\\HydratorRegistry',
     ];
 
     /**

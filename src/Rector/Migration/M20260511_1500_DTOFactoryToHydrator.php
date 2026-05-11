@@ -30,49 +30,19 @@ use Rector\Renaming\ValueObject\MethodCallRename;
  */
 final class M20260511_1500_DTOFactoryToHydrator
 {
-    public const CLASS_RENAMES = [
-
-        // Бывший движок Hydrator → публичный фасад Hydrator (его статический
-        // hydrateValue делегирует в Internal\HydratorEngine)
-        'EntelisTeam\\Hydrator\\Hydrator' => 'EntelisTeam\\DTOHydrator\\Hydrator',
-
-        // Публичный API: DTOFactory* → Hydrator*
-        'EntelisTeam\\Hydrator\\DTOFactory' => 'EntelisTeam\\DTOHydrator\\Hydrator',
-        'EntelisTeam\\Hydrator\\DTOFactoryCache' => 'EntelisTeam\\DTOHydrator\\HydratorRegistry',
-        'EntelisTeam\\Hydrator\\DTOFactoryTrait' => 'EntelisTeam\\DTOHydrator\\HydratorTrait',
-        'EntelisTeam\\Hydrator\\DTOFactoryTraitInterface' => 'EntelisTeam\\DTOHydrator\\HydratorTraitInterface',
-
-        // Подпакеты: только смена корня namespace
-        'EntelisTeam\\Hydrator\\Attribute\\ArrayTypeOf' => 'EntelisTeam\\DTOHydrator\\Attribute\\ArrayTypeOf',
-        'EntelisTeam\\Hydrator\\Definition\\ArgDefinition' => 'EntelisTeam\\DTOHydrator\\Definition\\ArgDefinition',
-        'EntelisTeam\\Hydrator\\Definition\\ClassDefinition' => 'EntelisTeam\\DTOHydrator\\Definition\\ClassDefinition',
-        'EntelisTeam\\Hydrator\\Definition\\DefinitionType' => 'EntelisTeam\\DTOHydrator\\Definition\\DefinitionType',
-        'EntelisTeam\\Hydrator\\Exception\\ArgumentTypeException' => 'EntelisTeam\\DTOHydrator\\Exception\\ArgumentTypeException',
-        'EntelisTeam\\Hydrator\\Exception\\HydrationException' => 'EntelisTeam\\DTOHydrator\\Exception\\HydrationException',
-        'EntelisTeam\\Hydrator\\Exception\\RequiredArgumentException' => 'EntelisTeam\\DTOHydrator\\Exception\\RequiredArgumentException',
-    ];
-
-    /**
-     * Переименования методов на классе Hydrator (createObject/createArray → hydrateObject/hydrateArray).
-     */
-    private static function getMethodRenames(): array
-    {
-        return [
-            new MethodCallRename(Hydrator::class, 'createObject', 'hydrateObject'),
-            new MethodCallRename(Hydrator::class, 'createArray', 'hydrateArray'),
-        ];
-    }
-
     public static function apply(RectorConfigBuilder $config): RectorConfigBuilder
     {
         return $config
-            ->withConfiguredRule(RenameClassRector::class, self::CLASS_RENAMES)
-            ->withConfiguredRule(RenameMethodRector::class, self::getMethodRenames())
             ->withRules([
                 ReplaceGetFactoryCreateObjectWithHydrateObjectRule::class,
                 ReplaceGetFactoryCreateArrayWithHydrateArrayRule::class,
                 ReplaceGetFactoryWithGetHydratorRule::class,
                 ReplaceFromObjectWithHydrateObjectRule::class,
+            ])
+            ->withConfiguredRule(RenameMethodRector::class,[
+                new MethodCallRename('EntelisTeam\\DTOHydrator\\HydratorRegistry', 'getFactory', 'getHydrator'),
+                new MethodCallRename('EntelisTeam\\DTOHydrator\\Hydrator', 'createObject', 'hydrateObject'),
+                new MethodCallRename('EntelisTeam\\DTOHydrator\\Hydrator', 'createArray', 'hydrateArray'),
             ])
             ->withImportNames(importNames: true, importDocBlockNames: true, importShortClasses: false, removeUnusedImports: true);
     }
