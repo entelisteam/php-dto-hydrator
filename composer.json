@@ -6,8 +6,8 @@
   "keywords": ["hydrator", "dto", "json", "attribute", "factory", "deserialization"],
   "authors": [
     {
-      "name": "Dim Entelis",
-      "email": "dentelis@gmail.com",
+      "name": "ENTELISTEAM INC",
+      "email": "welcome@entelis.team",
       "homepage": "https://entelis.team"
     }
   ],
@@ -16,7 +16,8 @@
     "entelisteam/php-reflection-helpers": "^1.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^12.0"
+    "phpunit/phpunit": "^12.0",
+    "rector/rector": "^2.3.0"
   },
   "autoload": {
     "psr-4": {
@@ -27,6 +28,9 @@
     "psr-4": {
       "EntelisTeam\\DTOHydrator\\Tests\\": "tests/"
     }
+  },
+  "extra": {
+    "lbaf-rector-migrations": "EntelisTeam\\DTOHydrator\\Rector\\Migrations"
   },
   "scripts": {
     "test": "vendor/bin/phpunit"
