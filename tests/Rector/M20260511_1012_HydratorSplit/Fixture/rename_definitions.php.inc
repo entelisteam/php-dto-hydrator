@@ -29,7 +29,6 @@ use EntelisTeam\DTOHydrator\Definition\ClassDefinition;
 use EntelisTeam\DTOHydrator\Definition\ArgDefinition;
 use EntelisTeam\DTOHydrator\Definition\DefinitionType;
 
-
 class UsesDefinitions
 {
     public function build(): ClassDefinition
