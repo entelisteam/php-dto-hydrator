@@ -18,6 +18,7 @@ final class Migrations
     public static function all(): array
     {
         return [
+            Migration\M20260511_1013_HydratorSplit::class,
             Migration\M20260511_1500_DTOFactoryToHydrator::class,
         ];
     }
