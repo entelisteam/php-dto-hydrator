@@ -1,5 +1,5 @@
 {
-  "name": "entelisteam/php-dto-hydrator",
+  "name": "entelisteam/lbaf-hydrator",
   "description": "Attribute-driven PHP DTO hydrator: builds typed DTOs, enums, nested objects and typed arrays from JSON-like data.",
   "type": "library",
   "license": "MIT",
