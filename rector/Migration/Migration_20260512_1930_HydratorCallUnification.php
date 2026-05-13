@@ -23,7 +23,7 @@ use Rector\Renaming\ValueObject\MethodCallRename;
  *  - переименование одиночного getFactory() → getHydrator() (только на классах гидратора);
  *  - удалённый метод fromObject() → hydrateObject() (только на классах гидратора).
  */
-final class Migration_20260612_1930_HydratorCallUnification
+final class Migration_20260512_1930_HydratorCallUnification
 {
     public static function apply(RectorConfigBuilder $config): RectorConfigBuilder
     {

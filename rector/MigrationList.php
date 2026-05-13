@@ -6,7 +6,7 @@ namespace EntelisTeam\Lbaf\Hydrator\Rector;
 
 use EntelisTeam\Lbaf\Hydrator\Rector\Migration\Migration_20260511_1013_HydratorSplit;
 use EntelisTeam\Lbaf\Hydrator\Rector\Migration\Migration_20260512_1845_NamespaceUnification;
-use EntelisTeam\Lbaf\Hydrator\Rector\Migration\Migration_20260612_1930_HydratorCallUnification;
+use EntelisTeam\Lbaf\Hydrator\Rector\Migration\Migration_20260512_1930_HydratorCallUnification;
 use EntelisTeam\Lbaf\Rector\RectorMigrationListInterface;
 
 /**
@@ -22,7 +22,7 @@ final class MigrationList implements RectorMigrationListInterface
         return [
             Migration_20260511_1013_HydratorSplit::class,
             Migration_20260512_1845_NamespaceUnification::class,
-            Migration_20260612_1930_HydratorCallUnification::class,
+            Migration_20260512_1930_HydratorCallUnification::class,
         ];
     }
 }
